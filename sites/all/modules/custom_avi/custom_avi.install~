@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install file for the profile2_mapper module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function custom_avi_schema() {
+	$schema['custom_avi'] = array(
+		'description' => 'Store custom blavi_id',
+		'fields' => array(
+			'nid' => array(
+				'description' => 'node nid',
+				'type' => 'int',
+				'not null' => TRUE,
+			),
+			'blavi_id' => array(
+				'description' => 'nid specific blavi_id',
+				'type' => 'serial',
+				'not null' => TRUE,																																																																																																																																																																																																
+			),
+			
+		),
+		'primary key' => array('blavi_id'),
+  );
+
+  return $schema;
+}

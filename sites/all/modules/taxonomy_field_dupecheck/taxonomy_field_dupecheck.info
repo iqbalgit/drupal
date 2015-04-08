@@ -1,0 +1,8 @@
+name = Taxonomy field dupecheck
+description = "Checks for duplicates when creating new taxonomy terms field."
+core = 7.x
+files[] = taxonomy_field_dupecheck.module
+files[] = taxonomy_field_dupecheck.install
+dependencies[] = taxonomy
+configure = admin/config/taxonomy/taxonomy_field_dupecheck
+

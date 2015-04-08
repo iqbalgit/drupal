@@ -1,0 +1,5 @@
+name = Vendor Rating
+description = Vendor Rating
+package = Custom Module
+core = 7.x
+

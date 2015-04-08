@@ -1,0 +1,91 @@
+diff --git a/resources/node_resource.inc b/resources/node_resource.inc
+index 7dd7edb..e7f330e 100644
+--- a/resources/node_resource.inc
++++ b/resources/node_resource.inc
+@@ -318,7 +318,19 @@ function _node_resource_create($node) {
+   $stub_form = drupal_get_form($node_type . '_node_form', (object) $stub_node);
+   $form_state['triggering_element'] = $stub_form['actions']['submit'];
+ 
+-  drupal_form_submit($node_type . '_node_form', $form_state, (object)$stub_node);
++  // Save key and value pairs to be expanded on drupal_form_submit() later on
++  $tmp_vals = array();
++  foreach ($form_state['values'] as $key => $value) {
++    if (preg_match('/^field_/', $key)) {
++      $num = count($form_state['values'][$key]['und']);
++      if ($num >= 2) {
++        $tmp_vals[$key]=$num;
++      }
++    }
++  }
++
++  // New submit function for multiple values
++  drupal_form_submit('_services_multivalue_extend_form', $form_state, (object)$stub_node, $tmp_vals, $node_type . '_node_form');
+ 
+   if ($errors = form_get_errors()) {
+     return services_error(implode(" ", $errors), 406, array('form_errors' => $errors));
+diff --git a/resources/user_resource.inc b/resources/user_resource.inc
+index 43b6d76..a431725 100644
+--- a/resources/user_resource.inc
++++ b/resources/user_resource.inc
+@@ -321,9 +321,21 @@ function _user_resource_create($account) {
+   // Set the form state op.
+   $form_state['values']['op'] = variable_get('services_user_create_button_resource_create', t('Create new account'));
+ 
+-  // execute the register form
++  // Save key and value pairs to be expanded on drupal_form_submit() later on.
++  $tmp_vals = array();
++  foreach ($form_state['values'] as $key => $value) {
++    if (preg_match('/^field_/', $key)) {
++       $num = count($form_state['values'][$key]['und']);
++       if ($num >= 2) {
++         $tmp_vals[$key]=$num;
++       }
++    }
++  }
++
++  // New submit function for multiple values
+   $form_state['programmed_bypass_access_check'] = FALSE;
+-  drupal_form_submit('user_register_form', $form_state);
++  drupal_form_submit('_services_multivalue_extend_form', $form_state, (object)$account, $tmp_vals, 'user_register_form');
++
+   // find and store the new user into the form_state
+   if(isset($form_state['values']['uid'])) {
+     $form_state['user'] = user_load($form_state['values']['uid']);
+diff --git a/services.module b/services.module
+index 8971d70..c43aeb5 100644
+--- a/services.module
++++ b/services.module
+@@ -1049,3 +1049,32 @@ function _services_session_token() {
+   print drupal_get_token('services');
+   drupal_exit();
+ }
++
++/**
++ * Builds a form including multiple values for a field
++ *
++ * @param &$form_state
++ *   Array representing the current form state
++ * @param $object
++ *   Array representing the node values
++ * @param $expand_values
++ *   Array representing the key value pairs for multi-value fields
++ * @param $form_name
++ *   String of the form which is to be built
++ * @return
++ *   The form
++ *
++ * @see drupal_rebuild_form()
++ */
++function _services_multivalue_extend_form($array_, &$form_state, $object, $expand_values, $form_name) {
++  $form = drupal_retrieve_form($form_name, $form_state);
++  // Increment items_count if more than	one value is to	be added
++  if ( count($expand_values) > 0 ) {
++    foreach ($expand_values as $key => $value) {
++      $form_state['field'][$key]['und']['items_count'] = $value;
++    }
++  }
++  // Rebuild the form including new item_count
++  $form = drupal_rebuild_form($form_name, $form_state, $form);
++  return $form;
++}
+\ No newline at end of file

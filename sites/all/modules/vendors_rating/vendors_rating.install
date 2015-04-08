@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Install file for the eventbrite module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function vendors_rating_schema() {
+	$schema['vendors_rating'] = array(
+		'description' => 'Vendors rating table',
+		'fields' => array(
+			'phone' => array(
+				'description' => 'vendor phone number',
+				'type' => 'varchar',
+				'length' => 20,
+				'not null' => TRUE,
+			),
+			'rating' => array(
+				'description' => 'Vendor Rating',
+				'type' => 'varchar',
+				'length' => 10,
+				'not null' => TRUE,
+			),
+		),
+  	);
+	return $schema;
+}
+
+function vendors_rating_uninstall() {
+	drupal_uninstall_schema('vendors_rating');
+}
+?>

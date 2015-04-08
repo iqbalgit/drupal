@@ -1,0 +1,43 @@
+<?php
+function vendors_rating_menu() {
+	$items['vendor/rating'] = array( // User registration menue
+		'title' => t('Vendor Rating'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('vendor_rating'),
+		'access callback' => TRUE,
+	);
+	return $items;
+}
+function vendor_rating($form, &$form_state) {
+	$form['phone_number'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Phone Number'),
+	);
+	$form['rating'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Vendor Rating'),
+	);
+	$form['submit'] = array(
+		'#type' => 'submit', 
+		'#value' => t('Submit')
+	);
+	return $form;
+}
+
+function vendor_rating_submit(&$form, &$form_state) {
+	dpm($form_state);
+	db_insert('vendors_rating') // Table name no longer needs {}
+		->fields(array(
+			'phone' => $form_state['values']['phone_number'],
+			'rating' => $form_state['values']['rating'],
+	))
+	->execute();
+}
+
+function vendors_rating_form_alter($form, $form_state, $form_id) {
+	//dpm($form_id);
+}
+
+function vendors_rating_views_pre_render(&$view) {
+	//dpm($view->query->pager->view);
+}

@@ -1,0 +1,5 @@
+name = Custom Avi
+description = Custom balavai ID creation module
+core = 7.x
+package = Blunkit Custom
+files[] = custom_avi.module

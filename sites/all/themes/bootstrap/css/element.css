@@ -1,0 +1,121 @@
+@font-face {
+        font-family: "Aller";
+        src: url('../fonts/825012208-Aller_Rg.eot');
+        src: url('../fonts/825012208-Aller_Rg.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/825012208-Aller_Rg.svg#Aller') format('svg'),
+        url('../fonts/825012208-Aller_Rg.woff') format('woff'),
+        url('../fonts/825012208-Aller_Rg.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+}
+
+@font-face {
+        font-family: "Aller Light";
+        src: url('../fonts/53375245-Aller_Lt.eot');
+        src: url('../fonts/53375245-Aller_Lt.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/53375245-Aller_Lt.svg#Aller Light') format('svg'),
+        url('../fonts/53375245-Aller_Lt.woff') format('woff'),
+        url('../fonts/53375245-Aller_Lt.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+}
+body{
+	font-family: "Aller Light";
+	direction: ltr;
+}
+
+.menu{
+   float: left;
+    height: 20px;
+    margin-top: 18px;
+    width: 106px;
+}
+
+.menu span{
+	background: none repeat scroll 0 0 #fff;
+    border-radius: 5px;
+    float: left;
+    height: 4px;
+    margin-bottom: 7px;
+    width: 32px;
+}
+
+.menu p{
+	font-size:18px;
+	color:#fff;
+}
+
+.banner{
+	width:100%;
+	float:left;
+	background: url(../img/banner-bg.jpg);
+	height:568px;
+}
+
+.header{
+	border-bottom: 1px solid #fff;
+    padding-bottom: 7px;
+    position: absolute;
+    width: 100%;
+}
+
+.apps{
+	float: left;
+    margin-left: 40px;
+    margin-top: 6px;
+    width: 130px;
+}
+
+.menu b{
+	float: left;
+    width: 42px;
+}
+
+.apps img{
+	width:100%;
+}
+
+.logo{
+	text-align:center;
+}
+
+.links{
+	float:right;
+	margin-top:25px;
+}
+
+.links a{
+	 border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 20px;
+    text-transform: uppercase;
+}
+.feature-block{
+	width:100%;
+	float:left;
+	height:600px;
+	background-image: -o-linear-gradient(bottom, #030303 0%, #373737 100%);
+	background-image: -moz-linear-gradient(bottom, #030303 0%, #373737 100%);
+	background-image: -webkit-linear-gradient(bottom, #030303 0%, #373737 100%);
+	background-image: -ms-linear-gradient(bottom, #030303 0%, #373737 100%);
+	background-image: linear-gradient(to bottom, #030303 0%, #373737 100%);
+}
+
+.feature-wrapper h1{
+	text-align:center;
+	color:#fff;
+}
+
+.feature-wrapper p{
+	text-align:center;
+	color:#fff;
+	font-size:18px;
+}
+
+.feature-wrapper{
+	 color: #fff;
+    margin: 100px auto auto;
+    width: 70%;
+}

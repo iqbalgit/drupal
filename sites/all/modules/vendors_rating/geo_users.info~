@@ -1,0 +1,5 @@
+name = Blunkit Eventbrite
+description = Blunkit Eventbrite
+package = Blunkit Custom
+core = 7.x
+

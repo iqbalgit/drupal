@@ -1,0 +1,6 @@
+name = Custom View
+description = Custom View - created programatically
+package = Custom Module
+version = "7.x-1.0"
+core = 7.x
+

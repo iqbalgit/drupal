@@ -1,0 +1,20 @@
+<?php
+function get_blavi_id($nid) {
+	$nid = 23;
+	
+	if(isset($nid)) {
+		$blavi_id = db_query("SELECT blavi_id FROM {custom_avi} HAVING nid <= :node_id, array(':node_id' =>  $nid)")->fetchAssoc();
+		if($blavi_id) {
+			return $blavi_id;
+		}
+		//$blavi_id = 300;
+		$nid = db_insert('custom_avi')
+		->fields(array(
+			'nid' => $nid,
+			'blavi_id' => $blavi_id,
+		))
+		->execute();
+		return $blavi_id;
+	}
+}
+
