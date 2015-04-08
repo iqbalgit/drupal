@@ -381,8 +381,8 @@ settings, consult http://drupal.org/getting-started/6/install/multi-site
 For more information on configuring Drupal's file system path in a multisite
 configuration, see step 6 above.
 
-MORE INFORMATION
-----------------
+MORE INFORMATION HERE
+---------------------
 
 - See the Drupal.org online documentation:
   http://drupal.org/documentation
