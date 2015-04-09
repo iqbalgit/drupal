@@ -1,6 +1,6 @@
 
-CONTENTS OF THIS FILE IS HERE
------------------------------
+CONTENTS OF THIS FILE
+---------------------
 
  * Requirements and notes
  * Optional server requirements
